@@ -21,7 +21,15 @@ public class TelemetryRepository : ITelemetryRepository
     {
         var telemetryRecords = _mapper.Map<List<Telemetry>>(telemetryDtos);
 
-		_context.UpdateRange(telemetryRecords);
+		foreach(var telemetry in telemetryRecords)
+		{
+			_context.Entry(telemetry).State = telemetry.Id == 0 ?
+				EntityState.Added :
+				EntityState.Modified;
+			
+			await _context.SaveChangesAsync();
+		}
+
 
         foreach (var telemetryRecord in telemetryRecords)
         {

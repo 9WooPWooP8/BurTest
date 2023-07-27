@@ -1,24 +1,9 @@
 using System.Net;
-
-namespace BurTestTests;
-
 using bur_test.Data.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
-{
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder.ConfigureTestServices(services =>
-        {
-        });
-    }
-}
 
+namespace BurTestTests;
 
 public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<bur_test.Program>>
 {
@@ -50,9 +35,8 @@ public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<bur_tes
             myDataContext.Add(new Well { Id = 1, Name = "well 1", TelemetryId = 1, CompanyId = 1, Active = 1 });
             myDataContext.Add(new Well { Id = 2, Name = "well 2", TelemetryId = 2, CompanyId = 2, Active = 0 });
             myDataContext.Add(new Well { Id = 3, Name = "well 3", TelemetryId = 3, CompanyId = 3, Active = 0 });
+
             myDataContext.SaveChanges();
-
-
         }
     }
 

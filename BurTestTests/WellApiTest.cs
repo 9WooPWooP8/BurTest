@@ -1,15 +1,15 @@
 using System.Net;
-using bur_test.Data.Models;
+using BurTest.Data.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 
 namespace BurTestTests;
 
-public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<bur_test.Program>>
+public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<BurTest.Program>>
 {
     readonly HttpClient _client;
 
-    public WellControllerTest(ApiWebApplicationFactory<bur_test.Program> application)
+    public WellControllerTest(ApiWebApplicationFactory<BurTest.Program> application)
     {
         _client = application.CreateClient();
         var scopeFactory = application.Services.GetService<IServiceScopeFactory>();
@@ -18,7 +18,6 @@ public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<bur_tes
         {
             var myDataContext = scope.ServiceProvider.GetService<BurDbContext>();
 
-            //TODO: Extremely bad way to create data
             myDataContext.Telemetry.RemoveRange(myDataContext.Telemetry);
             myDataContext.Companies.RemoveRange(myDataContext.Companies);
             myDataContext.Wells.RemoveRange(myDataContext.Wells);
@@ -28,6 +27,7 @@ public class WellControllerTest : IClassFixture<ApiWebApplicationFactory<bur_tes
             myDataContext.Add(new Company { Id = 1, Name = "company 1" });
             myDataContext.Add(new Company { Id = 2, Name = "company 2" });
             myDataContext.Add(new Company { Id = 3, Name = "company 3" });
+
             myDataContext.Add(new Telemetry { Id = 1, DateTime = DateTime.Now, Depth = 1 });
             myDataContext.Add(new Telemetry { Id = 2, DateTime = DateTime.Now, Depth = 2 });
             myDataContext.Add(new Telemetry { Id = 3, DateTime = DateTime.Now, Depth = 3 });

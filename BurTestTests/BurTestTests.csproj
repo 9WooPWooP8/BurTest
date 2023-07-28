@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\bur_test\bur_test.csproj" />
+    <ProjectReference Include="..\BurTest\bur_test.csproj" />
   </ItemGroup>
 
 </Project>

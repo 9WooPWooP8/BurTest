@@ -66,4 +66,13 @@ public class WellService : IWellService
 
 		return wells;
 	}
+
+    public async Task<List<DetailedWellDto>> GetDetailedWells()
+    {
+        var detailedWells = await _wellRepository.GetDetailedWells();
+
+        var detailedWellsDtos = _mapper.Map<List<DetailedWellDto>>(detailedWells);
+
+        return detailedWellsDtos;
+    }
 }

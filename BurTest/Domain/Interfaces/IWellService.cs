@@ -9,4 +9,5 @@ public interface IWellService {
 	public Task<List<WellDepthProgressDto>> GetActiveWellsDepthProgressByCompany(int companyId, DateTime start, DateTime end);
     public Task<List<Well>> DeactivateInactiveWells();
     public Task<List<DetailedWellDto>> GetDetailedActiveWells();
+    public Task<List<DetailedWellDto>> GetDetailedWells();
 }

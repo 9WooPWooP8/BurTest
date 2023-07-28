@@ -16,4 +16,5 @@ public interface IWellRepository {
 	public Task<Well> UpdateWell(Well well);
 	public Task<List<Well>> UpdateWells(List<Well> wells);
 	public Task<List<Well>> GetDetailedActiveWells();
+	public Task<List<Well>> GetDetailedWells();
 }

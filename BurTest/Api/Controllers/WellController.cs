@@ -75,6 +75,14 @@ public class WellController : ControllerBase
         return Ok(wells);
     }
 
+    [HttpGet("detailed")]
+    public async Task<IActionResult> GetDetailedWells()
+    {
+        var wells = await _wellService.GetDetailedWells();
+
+        return Ok(wells);
+    }
+
     [HttpGet("{id:int}/depthProgress")]
     public async Task<IActionResult> GetWellDepthProgress(
         [FromRoute] int id,

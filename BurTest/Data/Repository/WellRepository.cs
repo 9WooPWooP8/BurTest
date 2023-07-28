@@ -159,6 +159,17 @@ public class WellRepository : IWellRepository
     public async Task<List<Well>> GetDetailedActiveWells()
     {
         var wells = await _context.Wells
+			.Where(x => x.Active == 1)
+            .Include(x => x.Company)
+            .Include(x => x.Telemetry)
+            .ToListAsync();
+
+        return wells;
+    }
+
+    public async Task<List<Well>> GetDetailedWells()
+    {
+        var wells = await _context.Wells
             .Include(x => x.Company)
             .Include(x => x.Telemetry)
             .ToListAsync();
